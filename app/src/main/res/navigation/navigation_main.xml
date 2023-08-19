@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/busFragment">
+
+    <fragment
+        android:id="@+id/busFragment"
+        android:name="com.example.obiletcasestudy.ui.main.bus.BusFragment"
+        android:label="BusFragment"
+        tools:layout="@layout/fragment_bus_ticket_layout">
+        <action
+            android:id="@+id/action_busFragment_to_locationsDialogFragment"
+            app:destination="@id/locationsDialogFragment" />
+        <action
+            android:id="@+id/action_busFragment_to_busJourneyActivity"
+            app:destination="@id/busJourneyActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/flightFragment"
+        android:name="com.example.obiletcasestudy.ui.main.flight.FlightFragment"
+        android:label="FlightFragment"
+        tools:layout="@layout/fragment_flight_ticket_layout">
+        <action
+            android:id="@+id/action_flightFragment_to_locationsDialogFragment"
+            app:destination="@id/locationsDialogFragment" />
+        <action
+            android:id="@+id/action_flightFragment_to_busJourneyActivity"
+            app:destination="@id/busJourneyActivity" />
+        <action
+            android:id="@+id/action_flightFragment_to_passengersDialogFragment"
+            app:destination="@id/passengersDialogFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_flightFragment"
+        app:destination="@id/flightFragment"
+        app:popUpTo="@id/main_navigation" />
+    <action
+        android:id="@+id/action_global_busFragment"
+        app:destination="@id/busFragment"
+        app:popUpTo="@id/main_navigation" />
+    <dialog
+        android:id="@+id/locationsDialogFragment"
+        android:name="com.example.obiletcasestudy.ui.main.bus.locations.LocationsDialogFragment"
+        android:label="LocationsDialogFragment"
+        tools:layout="@layout/dialog_fragment_locations">
+        <argument
+            android:name="locationType"
+            app:argType="com.example.obiletcasestudy.ui.main.bus.locations.LocationTypes" />
+    </dialog>
+    <activity
+        android:id="@+id/busJourneyActivity"
+        android:name="com.example.obiletcasestudy.ui.main.bus.journey.BusJourneyActivity"
+        android:label="BusJourneyActivity"
+        tools:layout="@layout/activity_bus_journey">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="originId"
+            app:argType="integer" />
+        <argument
+            android:name="destinationId"
+            app:argType="integer" />
+        <argument
+            android:name="departureDate"
+            app:argType="java.util.Date" />
+    </activity>
+    <dialog
+        android:id="@+id/passengersDialogFragment"
+        android:name="com.example.obiletcasestudy.ui.main.flight.PassengersDialogFragment"
+        android:label="PassengersDialogFragment"
+        tools:layout="@layout/dialog_fragment_passengers" >
+        <argument
+            android:name="passengers"
+            app:argType="com.example.obiletcasestudy.ui.main.flight.PassengersModel" />
+    </dialog>
+</navigation>
